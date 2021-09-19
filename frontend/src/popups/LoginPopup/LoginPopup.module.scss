@@ -1,0 +1,21 @@
+.popupElement {
+    margin-bottom: 16px;
+}
+
+.checkboxWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popupButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > *:not(:last-child)::after {
+        content: "|";
+        margin: 0 6px;
+        cursor: default;
+    }
+}

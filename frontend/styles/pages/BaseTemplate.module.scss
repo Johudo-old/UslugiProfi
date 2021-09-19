@@ -1,0 +1,13 @@
+.flex__container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.page_body {
+    flex-grow: 1;
+
+    @media (max-width: 1000px) {
+        width: 100%;
+    }
+}

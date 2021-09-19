@@ -1,0 +1,83 @@
+@import "../../../styles/colors.scss";
+
+.adsLifeTime {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 20px;
+
+    .adsLifeTime__text span {
+        font-weight: bold;
+        color: $main-color;
+    }
+
+    .adsLifeTime_button {
+        width: 30%;
+    }
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    margin-bottom: 20px;
+
+    .userInfo__avatar {
+        margin-right: 30px;
+    }
+
+    .userInfo__text {
+        flex-grow: 1;
+        line-height: 1.25;
+
+        .userInfo__name,
+        .userInfo__phone,
+        .userInfo__email {
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
+        .userInfo__registerData {
+            opacity: 0.9;
+        }
+
+        .userInfo__adsCount {
+            margin-bottom: 0.7em;
+
+            span {
+                font-weight: bold;
+                color: $main-color;
+            }
+        }
+    }
+}
+
+.profileNavigationList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+
+    .profileNavigationList__item a,
+    .profileNavigationList__selectedItem a {
+        display: block;
+        border: 1px solid $main-color;
+        padding: 12px;
+
+        color: $main-color;
+        text-align: center;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+            color: $bg-main-color;
+            font-weight: bold;
+            background-color: $main-color;
+        }
+    }
+
+    .profileNavigationList__selectedItem a {
+        color: $bg-main-color;
+        font-weight: bold;
+        background-color: $main-color;
+    }
+}

@@ -1,0 +1,24 @@
+@import "../../../styles/colors.scss";
+
+.textarea {
+    display: block;
+    padding: 16px 20px;
+    border: none;
+    width: 100%;
+    height: 8em;
+    resize: none;
+
+    color: #ffffff;
+    transition: 0.3s;
+
+    background: rgba($color: $main-color, $alpha: 0.5);
+
+    &:focus {
+        background: rgba($color: $main-color, $alpha: 0.4);
+        outline: none;
+    }
+
+    &::placeholder {
+        color: #ffffff;
+    }
+}
