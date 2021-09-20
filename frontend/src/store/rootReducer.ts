@@ -1,4 +1,5 @@
-import { combineReducers } from "redux";
+import { HYDRATE } from "next-redux-wrapper";
+import { AnyAction, combineReducers } from "redux";
 import popupReducer from "./reducers/popupReducer";
 import userReducer from "./reducers/userReducer";
 import { defaultPopupState, PopupState } from "./states/PopupState";
@@ -14,7 +15,17 @@ export const initialState: IState = {
     user: defaultUserState,
 };
 
-export const rootReducer = combineReducers({
-    popup: popupReducer,
-    user: userReducer,
-});
+export const rootReducer = (state: IState | undefined, action: AnyAction) => {
+    if (action.type === HYDRATE) {
+        const nextState = {
+            ...state,
+            ...action.payload,
+        };
+        return nextState;
+    } else {
+        return combineReducers({
+            popup: popupReducer,
+            user: userReducer,
+        })(state, action);
+    }
+};

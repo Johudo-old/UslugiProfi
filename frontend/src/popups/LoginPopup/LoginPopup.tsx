@@ -7,8 +7,8 @@ import Checkbox from "../../components/Checkbox";
 import FormErrorsBlock from "../../components/FormErrorsBlock";
 import Input from "../../components/Input";
 import { EMAIL_REGEXP } from "../../constants/regexps";
-import { TokensService } from "../../services/TokensService";
 import { PopupActionCreator } from "../../store/actionCreators/PopupActionCreator";
+import { UserActionCreator } from "../../store/actionCreators/UserActionCreator";
 import { PopupTypeEnum } from "../Popup/PopupTypeEnum";
 import styles from "./LoginPopup.module.scss";
 
@@ -34,7 +34,7 @@ export default function LoginPopup() {
     async function submitForm(data: LoginPopupFormData) {
         const result = await AuthAPI.login({ email: data.email, password: md5(data.password) });
 
-        if (result.status === 401 && result.data.detail) {
+        if (result.status === 401 && result.data.error) {
             alert("Пользователя с такими данными не существует!");
             console.log(result);
             return;
@@ -45,11 +45,6 @@ export default function LoginPopup() {
             console.log(result);
             return;
         }
-
-        const refreshToken = (result.data as AuthLoginAPIData).refresh;
-
-        if (data.rememberMe) TokensService.setRefreshTokenToLocalStorage(refreshToken);
-        else TokensService.setRefreshTokenToSessionStorage(refreshToken);
 
         location.reload();
     }

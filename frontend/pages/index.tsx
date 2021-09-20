@@ -1,7 +1,9 @@
-import type { NextPage } from "next";
+import type { NextPage, NextPageContext } from "next";
 import React from "react";
 import Catalog from "../src/components/Catalog";
 import PageWrapper from "../src/components/PageWrapper";
+import { wrapper } from "../src/store";
+import { AuthStartUp } from "../src/utils/AuthStartUp";
 
 const HomePage: NextPage = () => {
     return (
@@ -10,5 +12,9 @@ const HomePage: NextPage = () => {
         </PageWrapper>
     );
 };
+
+HomePage.getInitialProps = wrapper.getInitialPageProps((store) => async (context: NextPageContext) => {
+    await AuthStartUp(store, context);
+});
 
 export default HomePage;

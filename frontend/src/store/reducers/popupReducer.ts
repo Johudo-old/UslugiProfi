@@ -1,13 +1,8 @@
+import { AnyAction } from "redux";
 import { PopupActionsEnum } from "../actions/PopupActions";
 import { defaultPopupState, PopupState } from "../states/PopupState";
 
-export default function popupReducer(
-    state: PopupState = defaultPopupState,
-    action: {
-        type: PopupActionsEnum;
-        payload?: any;
-    }
-): PopupState {
+export default function popupReducer(state: PopupState = defaultPopupState, action: AnyAction): PopupState {
     switch (action.type) {
         case PopupActionsEnum.OPEN_POPUP:
             return { ...state, isOpen: true, name: action.payload.name };

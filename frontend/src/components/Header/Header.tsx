@@ -5,16 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { PopupActionCreator } from "../../store/actionCreators/PopupActionCreator";
 import { PopupTypeEnum } from "../../popups/Popup/PopupTypeEnum";
 import { IState } from "../../store";
-import Link from "next/link";
-
 import React from "react";
 import Button from "../Button";
 import Input from "../Input";
+import { UserActionCreator } from "../../store/actionCreators/UserActionCreator";
 
 export default function Header() {
     const dispatch = useDispatch();
 
-    const userState = useSelector((state: IState) => state.user);
+    const userState = useSelector((state: IState) => state.user.userInfo);
 
     return (
         <header className={styles.header}>
@@ -32,7 +31,7 @@ export default function Header() {
                                 <a href="/profile/" className={[styles.link, styles.coloredLink].join(" ").trim()}>
                                     {userState.email}
                                 </a>
-                                <button className={styles.link} onClick={() => {}}>
+                                <button className={styles.link} onClick={() => dispatch(UserActionCreator.logout())}>
                                     Выйти
                                 </button>
                             </>

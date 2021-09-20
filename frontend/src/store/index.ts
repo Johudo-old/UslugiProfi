@@ -1,5 +1,5 @@
 import { IState } from "./rootReducer";
-import store from "./store";
+import { wrapper } from "./store";
 
-export { store };
+export { wrapper };
 export type { IState };

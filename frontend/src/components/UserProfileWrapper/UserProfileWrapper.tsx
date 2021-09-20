@@ -10,7 +10,7 @@ import { IState } from "../../store";
 export default function UserProfileWrapper(props: UserProfileWrapperProps) {
     const router = useRouter();
 
-    const userState = useSelector((state: IState) => state.user);
+    const userState = useSelector((state: IState) => state.user.userInfo);
 
     const navigationList = [
         {

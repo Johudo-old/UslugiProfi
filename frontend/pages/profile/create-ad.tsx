@@ -1,11 +1,14 @@
+import { NextPageContext } from "next";
 import React from "react";
 import Input from "../../src/components/Input";
 import PageWrapper from "../../src/components/PageWrapper";
 import Textarea from "../../src/components/Textarea";
 import UserProfileWrapper from "../../src/components/UserProfileWrapper";
+import { wrapper } from "../../src/store";
+import { AuthStartUp } from "../../src/utils/AuthStartUp";
 import styles from "../../styles/pages/UserProfileCreateAdPage.module.scss";
 
-export default function UserProfileCreateAdPage() {
+function UserProfileCreateAdPage() {
     return (
         <PageWrapper>
             <UserProfileWrapper>
@@ -16,3 +19,9 @@ export default function UserProfileCreateAdPage() {
         </PageWrapper>
     );
 }
+
+UserProfileCreateAdPage.getInitialProps = wrapper.getInitialPageProps((store) => async (context: NextPageContext) => {
+    await AuthStartUp(store, context);
+});
+
+export default UserProfileCreateAdPage;
