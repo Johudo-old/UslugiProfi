@@ -40,6 +40,7 @@ class LogoutView(APIView):
         try:
             token = RefreshToken(request.data["refresh"])
         except TokenError as error:
+            print(error)
             return Response(status=HTTP_401_UNAUTHORIZED, data={'error': str(error)})
 
         token.blacklist()
