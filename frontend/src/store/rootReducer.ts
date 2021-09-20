@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import popupReducer from "./reducers/popupReducer";
 import userReducer from "./reducers/userReducer";
-import { defaultPopupState, PopupState } from "./states/popupState";
+import { defaultPopupState, PopupState } from "./states/PopupState";
 import { defaultUserState, UserState } from "./states/UserState";
 
 export interface IState {

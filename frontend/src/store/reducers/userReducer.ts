@@ -5,12 +5,12 @@ export default function userReducer(
     state: UserState = defaultUserState,
     action: {
         type: UserActionsEnum;
-        data: any;
+        payload?: any;
     }
 ) {
     switch (action.type) {
         case UserActionsEnum.SET_USER_INFO:
-            return { ...state, ...action.data.user };
+            return { ...state, ...action.payload.user };
 
         default:
             return state;

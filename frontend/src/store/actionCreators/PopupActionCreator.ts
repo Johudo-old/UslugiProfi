@@ -9,13 +9,13 @@ export const PopupActionCreator = {
 function openPopupActionCreate(name: PopupTypeEnum) {
     return {
         type: PopupActionsEnum.OPEN_POPUP,
-        data: { name: name },
+        payload: { name: name },
     };
 }
 
 function closePopupActionCreate() {
     return {
         type: PopupActionsEnum.CLOSE_POPUP,
-        data: {},
+        payload: {},
     };
 }

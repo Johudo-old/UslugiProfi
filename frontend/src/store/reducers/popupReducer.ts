@@ -1,16 +1,16 @@
 import { PopupActionsEnum } from "../actions/PopupActions";
-import { defaultPopupState, PopupState } from "../states/popupState";
+import { defaultPopupState, PopupState } from "../states/PopupState";
 
 export default function popupReducer(
     state: PopupState = defaultPopupState,
     action: {
         type: PopupActionsEnum;
-        data: any;
+        payload?: any;
     }
 ): PopupState {
     switch (action.type) {
         case PopupActionsEnum.OPEN_POPUP:
-            return { ...state, isOpen: true, name: action.data.name };
+            return { ...state, isOpen: true, name: action.payload.name };
 
         case PopupActionsEnum.CLOSE_POPUP:
             return { ...state, isOpen: false, name: null };
