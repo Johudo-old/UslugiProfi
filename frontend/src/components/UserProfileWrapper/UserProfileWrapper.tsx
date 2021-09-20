@@ -4,9 +4,13 @@ import Avatar from "../Avatar";
 import { UserProfileWrapperProps } from "./UserProfileWrapperProps";
 import styles from "./UserProfileWrapper.module.scss";
 import Button from "../Button";
+import { useSelector } from "react-redux";
+import { IState } from "../../store";
 
 export default function UserProfileWrapper(props: UserProfileWrapperProps) {
     const router = useRouter();
+
+    const userState = useSelector((state: IState) => state.user);
 
     const navigationList = [
         {
@@ -27,6 +31,11 @@ export default function UserProfileWrapper(props: UserProfileWrapperProps) {
         },
     ];
 
+    function getName() {
+        if (userState?.name || userState?.surname) return `${userState?.name} ${userState?.surname}`.trim();
+        else return userState?.email || "unknown";
+    }
+
     return (
         <>
             <div className={styles.adsLifeTime}>
@@ -39,19 +48,23 @@ export default function UserProfileWrapper(props: UserProfileWrapperProps) {
             <div className={styles.userInfo}>
                 <Avatar
                     size="large"
-                    src="https://html5css.ru/w3images/avatar2.png"
-                    alt="dimazuev11@gmail.com"
+                    src={userState?.avatar || undefined}
+                    alt={getName()}
                     className={styles.userInfo__avatar}
                 />
 
                 <div className={styles.userInfo__text}>
-                    <div className={styles.userInfo__name}>Дмитрий Зуев</div>
-                    <div className={styles.userInfo__registerData}>на сайте с 28.01.21</div>
+                    <div className={styles.userInfo__name}>{getName()}</div>
+                    <div className={styles.userInfo__registerData}>
+                        на сайте с {userState?.create_date.split("-").reverse().join(".")}
+                    </div>
                     <div className={styles.userInfo__adsCount}>
                         Объявлений: <span>2</span>
                     </div>
-                    <div className={styles.userInfo__phone}>+7 (999) 999-99-99 </div>
-                    <div className={styles.userInfo__email}>dimazuev11@gmail.com</div>
+                    {userState?.phone ? <div className={styles.userInfo__phone}>{userState?.phone}</div> : undefined}
+                    {getName() !== userState?.email ? (
+                        <div className={styles.userInfo__email}>{userState?.email}</div>
+                    ) : undefined}
                 </div>
             </div>
 

@@ -1,60 +1,67 @@
 import Container from "../Container";
 import Logo from "../Logo";
 import styles from "./Header.module.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { PopupActionCreator } from "../../store/actionCreators/PopupActionCreator";
 import { PopupTypeEnum } from "../../popups/Popup/PopupTypeEnum";
+import { IState } from "../../store";
+import Link from "next/link";
+
+import React from "react";
+import Button from "../Button";
+import Input from "../Input";
 
 export default function Header() {
     const dispatch = useDispatch();
 
+    const userState = useSelector((state: IState) => state.user);
+
     return (
-        <div className={styles.header}>
+        <header className={styles.header}>
             <Container>
                 <div className={styles.header__top}>
-                    <a href="/" className={styles.header__logowrapper}>
+                    <a href="/" className={styles.header__logoWrapper}>
                         <Logo type="default" className={styles.header__logo} />
                     </a>
                 </div>
 
                 <div className={styles.header__bottom}>
-                    <div className={[styles.header__links, styles.header__links__desktop].join(" ").trim()}>
-                        <div className={styles.login__links}>
-                            <a href="/profile/" className={[styles.login, styles.open__login_popup].join(" ").trim()}>
-                                Профиль
-                            </a>
-                            <span> | </span>
-                            <button
-                                className={[styles.login, styles.open__login_popup].join(" ").trim()}
-                                onClick={() => dispatch(PopupActionCreator.openPopup(PopupTypeEnum.login))}
-                            >
-                                Войти
-                            </button>
-                            <span> | </span>
-                            <button
-                                className={[styles.signup, styles.open__register_popup].join(" ").trim()}
-                                onClick={() => dispatch(PopupActionCreator.openPopup(PopupTypeEnum.register))}
-                            >
-                                Регистрация
-                            </button>
-                        </div>
+                    <div className={[styles.header__links].join(" ").trim()}>
+                        {userState ? (
+                            <>
+                                <a href="/profile/" className={[styles.link, styles.coloredLink].join(" ").trim()}>
+                                    {userState.email}
+                                </a>
+                                <button className={styles.link} onClick={() => {}}>
+                                    Выйти
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <button
+                                    className={[styles.link, styles.coloredLink].join(" ").trim()}
+                                    onClick={() => dispatch(PopupActionCreator.openPopup(PopupTypeEnum.login))}
+                                >
+                                    Войти
+                                </button>
+                                <button
+                                    className={styles.link}
+                                    onClick={() => dispatch(PopupActionCreator.openPopup(PopupTypeEnum.register))}
+                                >
+                                    Регистрация
+                                </button>
+                            </>
+                        )}
                     </div>
-                </div>
 
-                <div className={styles.header__search__desktop}>
-                    <form className={styles.header__search_form}>
-                        <input
-                            className={styles.search_input}
-                            type="search"
-                            name="search"
-                            placeholder="Поиск по объявлениям"
-                        />
-                        <button className={styles.white_btn} type="submit">
+                    <form className={styles.header__searchForm}>
+                        <Input className={styles.searchInput} type="text" placeholder="Поиск по объявлениям" />
+                        <Button className={styles.searchButton} type="submit">
                             Искать
-                        </button>
+                        </Button>
                     </form>
                 </div>
             </Container>
-        </div>
+        </header>
     );
 }

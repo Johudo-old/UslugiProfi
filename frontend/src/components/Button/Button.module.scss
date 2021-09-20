@@ -12,4 +12,10 @@
     color: #ffffff;
 
     background-color: $main-color;
+    transition: 0.3s;
+
+    &:hover {
+        background: rgba($color: $main-color, $alpha: 0.9);
+        border: rgba($color: $main-color, $alpha: 0.9);
+    }
 }
