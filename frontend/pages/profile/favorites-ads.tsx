@@ -1,6 +1,6 @@
 import React from "react";
-import PageWrapper from "../../../src/components/PageWrapper";
-import UserProfileWrapper from "../../../src/components/UserProfileWrapper";
+import PageWrapper from "../../src/components/PageWrapper";
+import UserProfileWrapper from "../../src/components/UserProfileWrapper";
 
 export default function UserProfileFavoriteAdsPage() {
     return (

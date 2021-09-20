@@ -1,9 +1,9 @@
 import React from "react";
-import Input from "../../../src/components/Input";
-import PageWrapper from "../../../src/components/PageWrapper";
-import Textarea from "../../../src/components/Textarea";
-import UserProfileWrapper from "../../../src/components/UserProfileWrapper";
-import styles from "../../../styles/pages/UserProfileCreateAdPage.module.scss";
+import Input from "../../src/components/Input";
+import PageWrapper from "../../src/components/PageWrapper";
+import Textarea from "../../src/components/Textarea";
+import UserProfileWrapper from "../../src/components/UserProfileWrapper";
+import styles from "../../styles/pages/UserProfileCreateAdPage.module.scss";
 
 export default function UserProfileCreateAdPage() {
     return (

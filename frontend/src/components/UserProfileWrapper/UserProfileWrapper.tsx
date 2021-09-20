@@ -10,19 +10,19 @@ export default function UserProfileWrapper(props: UserProfileWrapperProps) {
 
     const navigationList = [
         {
-            url: `/profile/${router.query.user}/`,
+            url: `/profile/`,
             title: "Мои объявления",
         },
         {
-            url: `/profile/${router.query.user}/favorites-ads/`,
+            url: `/profile/favorites-ads/`,
             title: "Избранные объявления",
         },
         {
-            url: `/profile/${router.query.user}/create-ad/`,
+            url: `/profile/create-ad/`,
             title: "Разместить объявление",
         },
         {
-            url: `/profile/${router.query.user}/edit/`,
+            url: `/profile/edit/`,
             title: "Настройки профиля",
         },
     ];

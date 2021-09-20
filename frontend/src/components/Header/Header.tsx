@@ -20,7 +20,7 @@ export default function Header() {
                 <div className={styles.header__bottom}>
                     <div className={[styles.header__links, styles.header__links__desktop].join(" ").trim()}>
                         <div className={styles.login__links}>
-                            <a href="/profile/1" className={[styles.login, styles.open__login_popup].join(" ").trim()}>
+                            <a href="/profile/" className={[styles.login, styles.open__login_popup].join(" ").trim()}>
                                 Профиль
                             </a>
                             <span> | </span>
