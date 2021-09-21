@@ -24,6 +24,8 @@ from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, Bl
 urlpatterns = [
     path('api/user/', include('user.urls')),
     path('api/category/', include('category.urls')),
+    path('api/subcategory/', include('subcategory.urls')),
+    path('api/announcement/', include('announcement.urls')),
     path('auth/', include('authentication.urls')),
     path('admin/', admin.site.urls),
 ]

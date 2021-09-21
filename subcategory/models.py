@@ -9,7 +9,7 @@ class SubategoryModel(models.Model):
     is_active = models.BooleanField(verbose_name='Активна', default=True)
     create_date = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
 
-    category_id = models.ForeignKey(CategoryModel, verbose_name='Категория', on_delete=models.CASCADE)
+    category = models.ForeignKey(CategoryModel, verbose_name='Категория', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'subcategory'
