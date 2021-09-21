@@ -5,4 +5,5 @@
         "120"
     ],
     "python.autoComplete.addBrackets": true,
+    "python.analysis.completeFunctionParens": true,
 }

@@ -1,3 +1,4 @@
+from user.utils import path_and_rename_avatar
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from phonenumber_field.modelfields import PhoneNumberField
@@ -49,13 +50,13 @@ class UserModel(AbstractUser):
     company = models.CharField(verbose_name='Название компании', max_length=64, blank=True)
     ogrn = models.CharField(verbose_name='ОГРН', max_length=64, blank=True)
     inn = models.CharField(verbose_name='ИНН', max_length=64, blank=True)
-    address = models.CharField(verbose_name='Адресс', max_length=240, blank=True)
+    address = models.CharField(verbose_name='Адрес', max_length=240, blank=True)
     country = models.CharField(verbose_name='Страна', max_length=32, blank=True)
     create_date = models.DateField(verbose_name='Дата создания', auto_now_add=True)
     phone = PhoneNumberField(verbose_name='Телефон', blank=True)
     is_email_confirmed = models.BooleanField(default=False)
-    avatar = ResizedImageField(verbose_name='Аватар', size=[300, 300],
-                               crop=['middle', 'center'], upload_to='users_avatar', blank=True)
+    avatar = ResizedImageField(verbose_name='Аватар', size=[300, 300], quality=100,
+                               crop=['middle', 'center'], upload_to=path_and_rename_avatar, blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -64,7 +65,7 @@ class UserModel(AbstractUser):
 
     class Meta:
         db_table = 'user'
-        ordering = ['id', 'email', 'password', 'name', 'surname', 'type', 'phone', 'company', 'country', 'address']
+        ordering = ['id', 'email',  'name', 'surname', 'type', 'phone', 'company', 'country', 'address']
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 

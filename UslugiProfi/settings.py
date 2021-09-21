@@ -48,6 +48,8 @@ INSTALLED_APPS = [
 
     # CUSTOM_APPS
     'user',
+    'category',
+    'subcategory',
     'authentication',
 ]
 
@@ -79,7 +81,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'mainapp.context_processors.category',
             ],
         },
     },
@@ -161,11 +162,11 @@ STATIC_URL = '/static/'
 #     os.path.join(BASE_DIR, 'static'),
 # )
 
-# Media files users (Images)
+# Base url to serve media files
+MEDIA_URL = '/media/'
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Email settings
 
