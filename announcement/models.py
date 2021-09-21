@@ -73,8 +73,8 @@ class AnnouncementModel(models.Model):
 
     class Meta:
         db_table = 'announcement'
-        ordering = ['id', 'name', 'description', 'subcategory_id', 'user_id', 'address', 'address_lat', 'address_lng', 'create_date',
-                    'update_time', 'price_type', 'fixed_price', 'upper_price', 'lower_price', 'currency_id', 'dimension_id', 'image', 'is_active']
+        ordering = ['id', 'name', 'description', 'subcategory', 'user', 'address', 'address_lat', 'address_lng', 'create_date',
+                    'update_time', 'price_type', 'fixed_price', 'upper_price', 'lower_price', 'currency', 'dimension', 'image', 'is_active']
         verbose_name = 'Объявление'
         verbose_name_plural = 'Объявления'
 

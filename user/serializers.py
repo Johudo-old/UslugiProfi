@@ -1,3 +1,4 @@
+from UslugiProfi.utils import create_file_absolute_url
 from rest_framework import serializers
 from user.models import UserModel
 
@@ -12,8 +13,4 @@ class CurrentUserSeriaizer(serializers.ModelSerializer):
 
     def get_avatar(self, user):
         request = self.context.get('request')
-        if user.avatar and hasattr(user.avatar, 'url'):
-            photo_url = user.avatar.url
-            return request.build_absolute_uri(photo_url)
-        else:
-            return None
+        return create_file_absolute_url(request=request, file=user.avatar)

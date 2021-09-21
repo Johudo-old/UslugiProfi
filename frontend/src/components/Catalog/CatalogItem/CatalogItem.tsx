@@ -1,18 +1,15 @@
 import styles from "../Catalog.module.scss";
+import { CatalogItemProps } from "./CatalogItemProps";
 
-export default function CatalogItem() {
+export default function CatalogItem(props: CatalogItemProps) {
     return (
         <li className={styles.catalogitem}>
             <a href="/" className={styles.catalogitem__link}>
                 <div className={styles.catalogitem__imagewrapper}>
-                    <img
-                        src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp-spacegray-select-202011_GEO_RU?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1613672884000"
-                        alt=""
-                        className={styles.catalogitem__image}
-                    />
+                    <img src={props.item.image} alt={props.item.name} className={styles.catalogitem__image} />
                 </div>
-                <h3 className={styles.catalogitem__title}>item.name</h3>
-                <p className={styles.catalogitem__description}>item.description</p>
+                <h3 className={styles.catalogitem__title}>{props.item.name}</h3>
+                <p className={styles.catalogitem__description}>{props.item.description}</p>
             </a>
 
             <div className={styles.catalogitem__details}>

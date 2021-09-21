@@ -1,0 +1,20 @@
+export type Announcement = {
+    id: number;
+    name: string;
+    description: string | null;
+    subcategory: number;
+    user: number;
+    address: string | null;
+    address_lat: string | null;
+    address_lng: string | null;
+    create_date: string;
+    update_time: string;
+    price_type: string;
+    fixed_price: string | null;
+    upper_price: string | null;
+    lower_price: string | null;
+    currency: number;
+    dimension: number;
+    image: string;
+    is_active: boolean;
+};
