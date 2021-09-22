@@ -1,10 +1,11 @@
+import React from "react";
 import Container from "../Container";
 import Logo from "../Logo";
 import styles from "./Footer.module.scss";
 
-export default function Footer() {
+function Footer(props: any, ref: React.ForwardedRef<any>) {
     return (
-        <div className={styles.footer}>
+        <footer className={styles.footer} ref={ref}>
             <Container>
                 <div className={styles.footer__top}>
                     <a href="/">
@@ -39,6 +40,8 @@ export default function Footer() {
                     </p>
                 </div>
             </Container>
-        </div>
+        </footer>
     );
 }
+
+export default React.forwardRef(Footer);

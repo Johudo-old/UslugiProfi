@@ -10,13 +10,13 @@ import Button from "../Button";
 import Input from "../Input";
 import { UserActionCreator } from "../../store/actionCreators/UserActionCreator";
 
-export default function Header() {
+function Header(props: any, ref: React.ForwardedRef<any>) {
     const dispatch = useDispatch();
 
     const userState = useSelector((state: IState) => state.user.userInfo);
 
     return (
-        <header className={styles.header}>
+        <header className={styles.header} ref={ref}>
             <Container>
                 <div className={styles.header__top}>
                     <a href="/" className={styles.header__logoWrapper}>
@@ -64,3 +64,5 @@ export default function Header() {
         </header>
     );
 }
+
+export default React.forwardRef(Header);

@@ -1,0 +1,62 @@
+@import "../../../styles/colors.scss";
+
+.input {
+    display: block;
+    padding: 16px 20px;
+    border: none;
+    width: 100%;
+
+    color: #ffffff;
+    transition: 0.3s;
+
+    background: rgba($color: $main-color, $alpha: 0.5);
+
+    &:focus {
+        background: rgba($color: $main-color, $alpha: 0.4);
+        outline: none;
+    }
+
+    &::placeholder {
+        color: #ffffff;
+    }
+}
+
+.errorInput {
+    background: $error-color;
+}
+
+.imageWrapper {
+    position: relative;
+    height: 0px;
+    width: 100px;
+    height: 100px;
+    border: 2px dashed rgba($color: $main-color, $alpha: 0.4);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba($color: $main-color, $alpha: 0.1);
+    background-position: 50% 50%;
+    transition: 0.3s;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background-color: rgba($color: $main-color, $alpha: 0.3);
+    }
+
+    .imageInput {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .cameraIcon {
+        display: block;
+        max-width: 200px;
+        font-size: 3em;
+        color: rgba($color: $main-color, $alpha: 0.6);
+    }
+}

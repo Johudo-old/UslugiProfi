@@ -11,21 +11,22 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-from decouple import config
 from datetime import timedelta
+from dotenv import dotenv_values
+
+config = dotenv_values(os.path.join(os.path.abspath(__file__), '..', '..', '.env'))
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config['DEBUG'] if 'DEBUG' in config else True
 
 ALLOWED_HOSTS = ['*']
 
@@ -96,11 +97,11 @@ WSGI_APPLICATION = 'UslugiProfi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default=''),
-        'USER': config('DB_USERNAME', default=''),
-        'PASSWORD':  config('DB_PASSWORD', default=''),
-        'HOST':  config('DB_HOST', default='localhost'),
-        'PORT':  config('DB_PORT', default=5432),
+        'NAME': config['DB_NAME'] if 'DB_NAME' in config else '',
+        'USER': config['DB_USERNAME'] if 'DB_USERNAME' in config else '',
+        'PASSWORD': config['DB_PASSWORD'] if 'DB_PASSWORD' in config else '',
+        'HOST': config['DB_HOST'] if 'DB_HOST' in config else 'localhost',
+        'PORT': config['DB_PORT'] if 'DB_PORT' in config else 5432,
     }
 }
 
@@ -136,8 +137,8 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
-    'SIGNING_KEY': config('JWT_SECRET_KEY', default='SECRET_KEY'),
-    'AUTH_HEADER_TYPES': ('Uslugi',),
+    'SIGNING_KEY': config['JWT_SECRET_KEY'] if 'JWT_SECRET_KEY' in config else 'JWT_SECRET_KEY',
+    'AUTH_HEADER_TYPES': (config['JWT_AUTH_HEADER_PREFIX'] if 'JWT_AUTH_HEADER_PREFIX' in config else 'Bearer', ),
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken', ),
 }
 
@@ -171,12 +172,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Email settings
 
-EMAIL_HOST = config('EMAIL_HOST', default='localhost')
-EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+EMAIL_HOST = config['EMAIL_HOST'] if 'EMAIL_HOST' in config else 'localhost'
+EMAIL_PORT = config['EMAIL_PORT'] if 'EMAIL_PORT' in config else 25
+EMAIL_HOST_PASSWORD = config['EMAIL_HOST_PASSWORD'] if 'EMAIL_HOST_PASSWORD' in config else ''
+EMAIL_HOST_USER = config['EMAIL_HOST_USER'] if 'EMAIL_HOST_USER' in config else ''
+EMAIL_USE_TLS = config['EMAIL_USE_TLS'] if 'EMAIL_USE_TLS' in config else False
+DEFAULT_FROM_EMAIL = config['DEFAULT_FROM_EMAIL'] if 'DEFAULT_FROM_EMAIL' in config else ''
 
 # CORS Settings
 CORS_ALLOW_ALL_ORIGINS = True

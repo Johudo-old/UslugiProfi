@@ -1,0 +1,27 @@
+@import "../../../styles/colors.scss";
+
+.marker {
+    box-sizing: content-box;
+    width: 30px;
+    height: 30px;
+    border-radius: 50% 50% 50% 0;
+    background: $marker-color;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: -20px 0 0 -20px;
+    animation-name: bounce;
+    animation-fill-mode: both;
+    animation-duration: 1s;
+
+    &:after {
+        content: "";
+        width: 14px;
+        height: 14px;
+        margin: 8px 0 0 8px;
+        background: white;
+        position: absolute;
+        border-radius: 50%;
+    }
+}
