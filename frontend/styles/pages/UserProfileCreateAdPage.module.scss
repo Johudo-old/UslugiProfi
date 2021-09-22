@@ -29,3 +29,25 @@
 .map {
     height: 400px !important ;
 }
+
+.selectorHidden {
+    margin-bottom: 0 !important;
+}
+
+.priceBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    & > * {
+        flex-grow: 1;
+    }
+
+    & > *:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    .priceBlock__Selector {
+        flex-shrink: 0;
+    }
+}
