@@ -1,40 +1,10 @@
+from dimension.models import DimensionModel
+from price_currency.models import PriceCurrencyModel
 from announcement.utils import path_and_rename_announcement_image
 from user.models import UserModel
 from subcategory.models import SubategoryModel
 from django.db import models
 from django_resized import ResizedImageField
-
-
-class PriceCurrencyModel(models.Model):
-
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(verbose_name='Название', max_length=64, unique=True)
-    short_name = models.CharField(verbose_name='Короткое название', max_length=8, unique=True)
-
-    class Meta:
-        db_table = 'price_currency'
-        ordering = ['name', 'short_name']
-        verbose_name = 'Валюта'
-        verbose_name_plural = 'Валюты'
-
-    def __str__(self):
-        return self.name
-
-
-class AnnouncementDimensionModel(models.Model):
-
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(verbose_name='Название', max_length=64, unique=True)
-    short_name = models.CharField(verbose_name='Короткое название', max_length=8, unique=True)
-
-    class Meta:
-        db_table = 'announcement_dimention'
-        ordering = ['name', 'short_name']
-        verbose_name = 'Размерность'
-        verbose_name_plural = 'Размерности'
-
-    def __str__(self):
-        return self.name
 
 
 class AnnouncementModel(models.Model):
@@ -69,7 +39,7 @@ class AnnouncementModel(models.Model):
     user = models.ForeignKey(UserModel, verbose_name='Автор', on_delete=models.CASCADE)
     subcategory = models.ForeignKey(SubategoryModel, verbose_name='Подкатегория', on_delete=models.CASCADE)
     currency = models.ForeignKey(PriceCurrencyModel, verbose_name='Валюта', on_delete=models.CASCADE)
-    dimension = models.ForeignKey(AnnouncementDimensionModel, verbose_name='Размерность', on_delete=models.CASCADE)
+    dimension = models.ForeignKey(DimensionModel, verbose_name='Размерность', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'announcement'

@@ -1,19 +1,5 @@
-from announcement.models import AnnouncementDimensionModel, AnnouncementModel, PriceCurrencyModel
+from announcement.models import AnnouncementModel
 from django.contrib import admin
-
-
-@admin.register(PriceCurrencyModel)
-class PriceCurrencyAdmin(admin.ModelAdmin):
-    list_display = ['name', 'short_name']
-    fields = ['name', 'short_name']
-    pass
-
-
-@admin.register(AnnouncementDimensionModel)
-class AnnouncementDimensionAdmin(admin.ModelAdmin):
-    list_display = ['name', 'short_name']
-    fields = ['name', 'short_name']
-    pass
 
 
 @admin.register(AnnouncementModel)
