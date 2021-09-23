@@ -1,10 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { StatusCodes } from "http-status-codes";
+import cookie from "cookie";
 
 export const BackendUtils = {
     isRequestMethodAllowed,
     setRequestMethodNotAllowed,
     setIternalServerError,
+    serializeAccessCookie,
+    serializeRefreshCookie,
 };
 
 function isRequestMethodAllowed(
@@ -29,5 +32,19 @@ function setRequestMethodNotAllowed(req: NextApiRequest, res: NextApiResponse, a
 function setIternalServerError(req: NextApiRequest, res: NextApiResponse) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         error: "Something went wrong when retrieving user",
+    });
+}
+
+function serializeAccessCookie(access: string): string {
+    return cookie.serialize("access", access, {
+        maxAge: 60 * 30,
+        path: "/",
+    });
+}
+
+function serializeRefreshCookie(refresh: string): string {
+    return cookie.serialize("refresh", refresh, {
+        maxAge: 60 * 60 * 24 * 30,
+        path: "/",
     });
 }

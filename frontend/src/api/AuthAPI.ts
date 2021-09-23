@@ -46,10 +46,3 @@ function refreshTokenQuery() {
         .then((res: AxiosResponse<AuthRefreshTokenAPIData>) => res)
         .catch((err: AxiosError) => err.response as AxiosResponse);
 }
-
-// function registerQuery(data: { email: string; password: string }) {
-//     return axios
-//         .post(FRONTEND_API_URL + "/auth/register/", data)
-//         .then((res: AxiosResponse<{}>) => res)
-//         .catch((err: AxiosError) => err.response as AxiosResponse);
-// }

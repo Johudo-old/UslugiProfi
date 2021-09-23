@@ -1,7 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import cookie from "cookie";
 import { NextApiRequest, NextApiResponse } from "next";
-import { BACKEND_API_URL, JWT_AUTH_HEADER_PREFIX } from "../../../config";
+import { BACKEND_API_URL } from "../../../config";
 import { AuthLoginAPIData } from "../../../src/api/AuthAPI";
 import { BackendUtils } from "../../../src/utils/BackendUtils";
 
@@ -14,19 +13,11 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
     try {
         const apiRes = await axios
-            .post(BACKEND_API_URL + "/auth/login/", req.body)
+            .post(BACKEND_API_URL + "/auth/register/", req.body)
             .then((res: AxiosResponse<AuthLoginAPIData>) => res)
             .catch((err: AxiosError) => err.response as AxiosResponse);
 
         if (apiRes.status === 200) {
-            res.setHeader("Set-Cookie", [
-                BackendUtils.serializeAccessCookie((apiRes.data as AuthLoginAPIData).access),
-                BackendUtils.serializeRefreshCookie((apiRes.data as AuthLoginAPIData).refresh),
-            ]);
-            axios.defaults.headers.common["Authorization"] = `${JWT_AUTH_HEADER_PREFIX} ${
-                (apiRes.data as AuthLoginAPIData).access
-            }`;
-
             return res.status(200).json({});
         }
 
