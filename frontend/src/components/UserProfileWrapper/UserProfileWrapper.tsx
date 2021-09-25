@@ -59,7 +59,7 @@ export default function UserProfileWrapper(props: UserProfileWrapperProps) {
                         на сайте с {userState?.create_date.split("-").reverse().join(".")}
                     </div>
                     <div className={styles.userInfo__adsCount}>
-                        Объявлений: <span>2</span>
+                        Объявлений: <span>{userState?.announcements_count || "???"}</span>
                     </div>
                     {userState?.phone ? <div className={styles.userInfo__phone}>{userState?.phone}</div> : undefined}
                     {getName() !== userState?.email ? (

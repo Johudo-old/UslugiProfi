@@ -13,4 +13,5 @@ export type User = {
     phone: string;
     surname: string;
     type: string;
+    announcements_count?: number;
 };
