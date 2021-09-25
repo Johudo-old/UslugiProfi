@@ -4,6 +4,7 @@ import { UserAPI } from "../../api/UserAPI";
 import { UserActionsEnum } from "../actions/UserActions";
 import { IState } from "..";
 import { Action } from "redux";
+import Cookies from "js-cookie";
 
 const loadUser = () => async (dispatch: ThunkDispatch<IState, void, Action>) => {
     try {
@@ -111,24 +112,17 @@ const login = (email: string, password: string) => async (dispatch: ThunkDispatc
     });
 };
 
-const logout = () => async (dispatch: ThunkDispatch<IState, void, Action>) => {
-    try {
-        const result = await AuthAPI.logout();
+const logout = () => async () => {
+    const result = await AuthAPI.logout();
 
-        if (result.status === 200) {
-            dispatch({
-                type: UserActionsEnum.LOGOUT_SUCCESS,
-            });
-        } else {
-            dispatch({
-                type: UserActionsEnum.LOGOUT_FAIL,
-            });
-        }
-    } catch (err) {
-        dispatch({
-            type: UserActionsEnum.LOGOUT_FAIL,
-        });
+    if (result.status === 200) {
+        Cookies.remove("access");
+        Cookies.remove("refresh");
+        window.location.reload();
+        return;
     }
+
+    alert("Error logout");
 };
 
 export const UserActionCreator = {

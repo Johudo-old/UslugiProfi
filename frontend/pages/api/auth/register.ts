@@ -2,18 +2,22 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 import { BACKEND_API_URL } from "../../../config";
 import { AuthLoginAPIData } from "../../../src/api/AuthAPI";
-import { BackendUtils } from "../../../src/utils/BackendUtils";
+import { NextAPIUtils } from "../../../src/utils/NextAPIUtils";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
     const allowedRequestMethods: Array<string> = ["POST"];
 
-    if (!BackendUtils.isRequestMethodAllowed(req, res, allowedRequestMethods)) {
-        return BackendUtils.setRequestMethodNotAllowed(req, res, allowedRequestMethods);
+    if (!NextAPIUtils.isRequestMethodAllowed(req, res, allowedRequestMethods)) {
+        return NextAPIUtils.setRequestMethodNotAllowed(req, res, allowedRequestMethods);
     }
 
     try {
+        const defaultHeaders: any = NextAPIUtils.setDefaultHeader(req);
+
         const apiRes = await axios
-            .post(BACKEND_API_URL + "/auth/register/", req.body)
+            .post(BACKEND_API_URL + "/auth/register/", req.body, {
+                headers: defaultHeaders,
+            })
             .then((res: AxiosResponse<AuthLoginAPIData>) => res)
             .catch((err: AxiosError) => err.response as AxiosResponse);
 
@@ -23,7 +27,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
         if (apiRes.status === 401) {
             res.setHeader("Set-Cookie", "");
-            axios.defaults.headers.common["Authorization"] = undefined;
             return res.status(401).json(apiRes.data);
         }
 
@@ -32,6 +35,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         });
     } catch (error) {
         console.log(error);
-        return BackendUtils.setIternalServerError(req, res);
+        return NextAPIUtils.setIternalServerError(req, res);
     }
 }

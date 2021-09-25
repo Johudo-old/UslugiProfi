@@ -1,8 +1,9 @@
+from announcement.enums import PriceTypeEnum
 from dimension.models import DimensionModel
 from price_currency.models import PriceCurrencyModel
 from announcement.utils import path_and_rename_announcement_image
 from user.models import UserModel
-from subcategory.models import SubategoryModel
+from subcategory.models import SubcategoryModel
 from django.db import models
 from django_resized import ResizedImageField
 
@@ -10,9 +11,9 @@ from django_resized import ResizedImageField
 class AnnouncementModel(models.Model):
 
     PRICE_TYPE = (
-        ('FIXED', 'Фиксированная цена'),
-        ('NEGOTIATED ', 'Договорная цена'),
-        ('RANGE', 'Диапозон цен'),
+        (PriceTypeEnum.FIXED.name, 'Фиксированная цена'),
+        (PriceTypeEnum.NEGOTIATED.name, 'Договорная цена'),
+        (PriceTypeEnum.RANGE.name, 'Диапозон цен'),
     )
 
     id = models.AutoField(primary_key=True)
@@ -37,9 +38,11 @@ class AnnouncementModel(models.Model):
     address_lng = models.DecimalField(verbose_name='Долгота', max_digits=13, decimal_places=10, null=True, blank=True)
 
     user = models.ForeignKey(UserModel, verbose_name='Автор', on_delete=models.CASCADE)
-    subcategory = models.ForeignKey(SubategoryModel, verbose_name='Подкатегория', on_delete=models.CASCADE)
-    currency = models.ForeignKey(PriceCurrencyModel, verbose_name='Валюта', on_delete=models.CASCADE)
-    dimension = models.ForeignKey(DimensionModel, verbose_name='Размерность', on_delete=models.CASCADE)
+    subcategory = models.ForeignKey(SubcategoryModel, verbose_name='Подкатегория', on_delete=models.CASCADE)
+    currency = models.ForeignKey(PriceCurrencyModel, verbose_name='Валюта',
+                                 on_delete=models.CASCADE, null=True, blank=True)
+    dimension = models.ForeignKey(DimensionModel, verbose_name='Размерность',
+                                  on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         db_table = 'announcement'

@@ -20,6 +20,7 @@ const UserProfilePage: NextPage<UserProfilePageProps> = (props: UserProfilePageP
 
 UserProfilePage.getInitialProps = wrapper.getInitialPageProps((store) => async (context: NextPageContext) => {
     await AuthStartUp(store, context);
+
     const getAnnouncementsResult = await AnnouncementAPI.getAnnouncements({
         user: store.getState().user?.userInfo?.id,
     });

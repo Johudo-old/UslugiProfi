@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { FRONTEND_API_URL } from "../../config";
+import { NEXT_API_URL } from "../../config";
 
 export const AuthAPI = {
     login: loginQuery,
@@ -21,28 +21,28 @@ interface APIDataWithRefreshToken {
 
 function loginQuery(data: { email: string; password: string }) {
     return axios
-        .post(FRONTEND_API_URL + "/api/auth/login/", data)
+        .post(NEXT_API_URL + "/api/auth/login/", data)
         .then((res: AxiosResponse<AuthLoginAPIData>) => res)
         .catch((err: AxiosError) => err.response as AxiosResponse);
 }
 
 function logoutQuery() {
     return axios
-        .get(FRONTEND_API_URL + "/api/auth/logout/")
+        .get(NEXT_API_URL + "/api/auth/logout/")
         .then((res: AxiosResponse<{}>) => res)
         .catch((err: AxiosError) => err.response as AxiosResponse);
 }
 
 function registerQuery(data: { email: string; password: string }) {
     return axios
-        .post(FRONTEND_API_URL + "/api/auth/register/", data)
+        .post(NEXT_API_URL + "/api/auth/register/", data)
         .then((res: AxiosResponse<{}>) => res)
         .catch((err: AxiosError) => err.response as AxiosResponse);
 }
 
 function refreshTokenQuery() {
     return axios
-        .get(FRONTEND_API_URL + "/api/auth/refresh/")
+        .get(NEXT_API_URL + "/api/auth/refresh/")
         .then((res: AxiosResponse<AuthRefreshTokenAPIData>) => res)
         .catch((err: AxiosError) => err.response as AxiosResponse);
 }

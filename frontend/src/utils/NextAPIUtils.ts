@@ -1,13 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { StatusCodes } from "http-status-codes";
 import cookie from "cookie";
+import { JWT_AUTH_HEADER_PREFIX } from "../../config";
 
-export const BackendUtils = {
+export const NextAPIUtils = {
     isRequestMethodAllowed,
     setRequestMethodNotAllowed,
     setIternalServerError,
     serializeAccessCookie,
     serializeRefreshCookie,
+    setDefaultHeader,
 };
 
 function isRequestMethodAllowed(
@@ -47,4 +49,13 @@ function serializeRefreshCookie(refresh: string): string {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
     });
+}
+
+function setDefaultHeader(req: NextApiRequest) {
+    const accessCookie = cookie.parse(req.headers.cookie ?? "").access || "";
+
+    const headers: any = {};
+    if (accessCookie) headers["Authorization"] = `${JWT_AUTH_HEADER_PREFIX} ${accessCookie}`;
+
+    return headers;
 }

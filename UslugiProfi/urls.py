@@ -26,6 +26,8 @@ urlpatterns = [
     path('api/category/', include('category.urls')),
     path('api/subcategory/', include('subcategory.urls')),
     path('api/announcement/', include('announcement.urls')),
+    path('api/dimension/', include('dimension.urls')),
+    path('api/price_currency/', include('price_currency.urls')),
     path('auth/', include('authentication.urls')),
     path('admin/', admin.site.urls),
 ]

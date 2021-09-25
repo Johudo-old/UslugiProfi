@@ -1,9 +1,9 @@
-from subcategory.models import SubategoryModel
+from subcategory.models import SubcategoryModel
 from django.contrib import admin
 
 
-@admin.register(SubategoryModel)
+@admin.register(SubcategoryModel)
 class SubategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'category_id', 'is_active', 'create_date']
-    fields = ['name', 'category_id', 'is_active']
+    list_display = ['name', 'category', 'is_active', 'create_date']
+    fields = ['name', 'category', 'is_active']
     pass

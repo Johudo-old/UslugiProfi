@@ -14,7 +14,7 @@ function ImageInput(
     return (
         <label
             htmlFor={otherProps.id}
-            className={[styles.imageWrapper, className].join(" ").trim()}
+            className={[styles.imageWrapper, error ? styles.errorImageWrapper : "", className].join(" ").trim()}
             style={{ backgroundImage: imageSrc ? `url(${imageSrc})` : "" }}
         >
             {!imageSrc ? <FontAwesomeIcon icon={faCamera} className={styles.cameraIcon} /> : <></>}
@@ -26,6 +26,8 @@ function ImageInput(
                     if ((event.target.files as FileList)[0])
                         setImageSrc(URL.createObjectURL((event.target.files as FileList)[0]));
                     else setImageSrc("");
+
+                    if (onChange) onChange(event);
                 }}
                 {...otherProps}
             />

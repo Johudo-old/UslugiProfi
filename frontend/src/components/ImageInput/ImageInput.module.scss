@@ -60,3 +60,12 @@
         color: rgba($color: $main-color, $alpha: 0.6);
     }
 }
+
+.errorImageWrapper {
+    border: 2px dashed $error-color;
+    background-color: rgba($color: $error-color, $alpha: 0.7);
+
+    .cameraIcon {
+        color: $error-color;
+    }
+}

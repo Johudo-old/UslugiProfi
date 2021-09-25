@@ -1,5 +1,6 @@
+from price_currency.views import PriceCurrencyView
 from django.urls import path
 
 urlpatterns = [
-    # path('', AnnouncementDimensionsView.as_view(), name='get_announcement_dimensions'),
+    path('', PriceCurrencyView.as_view(), name='price_currency'),
 ]

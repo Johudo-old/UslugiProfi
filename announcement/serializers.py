@@ -14,3 +14,11 @@ class GetAnnouncementsSeriaizer(serializers.ModelSerializer):
     def get_image(self, announcement):
         request = self.context.get('request')
         return create_file_absolute_url(request=request, file=announcement.image)
+
+
+class CreateAnnouncementsSeriaizer(serializers.ModelSerializer):
+
+    class Meta:
+        model = AnnouncementModel
+        fields = ('name', 'description', 'subcategory',  'address', 'address_lat', 'address_lng', 'price_type',
+                  'fixed_price', 'upper_price', 'lower_price', 'currency', 'dimension', 'image', 'user')

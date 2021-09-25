@@ -5,5 +5,6 @@ export interface SelectorProps {
     keyValue: string;
     options: Array<any>;
     hidden?: boolean;
+    textValueName: string;
     onSelect?: (item: any) => void;
 }

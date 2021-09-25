@@ -64,6 +64,7 @@
 .header__links {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 
     .link {
         display: block;

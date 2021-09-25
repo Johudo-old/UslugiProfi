@@ -1,8 +1,16 @@
 import { TextareaProps } from "./TextareaProps";
 import styles from "./Textarea.module.scss";
+import React from "react";
+function Textarea(props: TextareaProps, ref: React.ForwardedRef<any>) {
+    const { className, error, ...otherProps } = props;
 
-export default function Textarea(props: TextareaProps) {
-    const { className, ...otherProps } = props;
-
-    return <textarea className={[styles.textarea, className].join(" ").trim()} {...otherProps} />;
+    return (
+        <textarea
+            className={[styles.textarea, error ? styles.errorTextarea : "", className].join(" ").trim()}
+            ref={ref}
+            {...otherProps}
+        />
+    );
 }
+
+export default React.forwardRef(Textarea);

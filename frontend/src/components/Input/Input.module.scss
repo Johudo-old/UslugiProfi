@@ -22,5 +22,5 @@
 }
 
 .errorInput {
-    background: $error-color;
+    background: rgba($color: $error-color, $alpha: 0.7);
 }

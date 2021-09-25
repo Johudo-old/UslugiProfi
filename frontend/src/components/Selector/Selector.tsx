@@ -8,10 +8,6 @@ function Selector(props: SelectorProps) {
     const [isOpened, setIsOpened] = useState(false);
     const [selectedItem, setSelectedItem] = useState<any>();
 
-    function resetSelectedItem() {
-        setSelectedItem({});
-    }
-
     return (
         <div className={[props.className, props.hidden ? styles.hiddenSeletor : ""].join(" ").trim()}>
             <div
@@ -22,7 +18,11 @@ function Selector(props: SelectorProps) {
                     setIsOpened(!isOpened);
                 }}
             >
-                <span>{selectedItem?.name || selectedItem?.text || props.defaultText || "Unknown name"}</span>
+                <span>
+                    {selectedItem && props.textValueName in selectedItem
+                        ? selectedItem[props.textValueName]
+                        : props.defaultText || "Unknown name"}
+                </span>
                 <FontAwesomeIcon
                     icon={faAngleDown}
                     className={[styles.arrowIcon, !isOpened ? styles.arrowIconClosed : ""].join(" ").trim()}
@@ -40,7 +40,7 @@ function Selector(props: SelectorProps) {
                             setSelectedItem(optionItem);
                         }}
                     >
-                        {optionItem?.name || optionItem?.text || "Unknown name"}
+                        {props.textValueName in optionItem ? optionItem[props.textValueName] : "Unknown name"}
                     </li>
                 ))}
             </ul>

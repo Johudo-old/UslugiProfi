@@ -60,7 +60,12 @@
 
     .profileNavigationList__item a,
     .profileNavigationList__selectedItem a {
-        display: block;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         border: 1px solid $main-color;
         padding: 12px;
 
