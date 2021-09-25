@@ -33,8 +33,6 @@ function UserProfileEditPage() {
     const phoneInput = register("phone");
 
     async function onSubmit(data: EditProfileFormData) {
-        console.log(data);
-
         if (phoneValue && !PHONE_REGEXP.test(phoneValue)) {
             setError("phone", { message: "Поле номера телефона неправильного формата. Пример: " + PHONE_EXAMPLE });
             return;
