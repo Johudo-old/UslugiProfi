@@ -4,7 +4,8 @@ import { User } from "../types/User";
 import { APIUtils } from "../utils/APIUtils";
 
 export const UserAPI = {
-    getCurrenUserInfo: getCurrenUserInfo,
+    getCurrenUserInfo,
+    updateCurrenUserInfo,
 };
 
 function getCurrenUserInfo() {
@@ -12,6 +13,15 @@ function getCurrenUserInfo() {
 
     return axios
         .get(BACKEND_API_URL + "/api/user/me", { headers: defaultHeaders })
+        .then((res: AxiosResponse<UserInfoAPIData>) => res)
+        .catch((err: AxiosError) => err.response as AxiosResponse);
+}
+
+function updateCurrenUserInfo(data: FormData) {
+    const defaultHeaders: any = APIUtils.setDefaultHeader();
+
+    return axios
+        .patch(BACKEND_API_URL + "/api/user/me/", data, { headers: defaultHeaders })
         .then((res: AxiosResponse<UserInfoAPIData>) => res)
         .catch((err: AxiosError) => err.response as AxiosResponse);
 }

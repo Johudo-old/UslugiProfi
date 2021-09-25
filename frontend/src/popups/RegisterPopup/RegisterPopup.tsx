@@ -7,7 +7,7 @@ import Button from "../../components/Button";
 import Checkbox from "../../components/Checkbox";
 import FormErrorsBlock from "../../components/FormErrorsBlock";
 import Input from "../../components/Input";
-import { EMAIL_REGEXP } from "../../constants/regexps";
+import { EMAIL_REGEXP } from "../../constants/emailConstants";
 import { PopupActionCreator } from "../../store/actionCreators/PopupActionCreator";
 import { PopupTypeEnum } from "../Popup/PopupTypeEnum";
 import styles from "./RegisterPopup.module.scss";

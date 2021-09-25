@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
 function ImageInput(
-    { className, error, type, onChange, ...otherProps }: ImageInputProps,
+    { className, error, type, onChange, defaultImageSrc, ...otherProps }: ImageInputProps,
     ref: React.ForwardedRef<any>
 ) {
-    const [imageSrc, setImageSrc] = useState<string>("");
+    const [imageSrc, setImageSrc] = useState<string>(defaultImageSrc || "");
 
     return (
         <label

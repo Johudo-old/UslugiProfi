@@ -7,4 +7,5 @@ export interface SelectorProps {
     hidden?: boolean;
     textValueName: string;
     onSelect?: (item: any) => void;
+    defaultValue?: any;
 }

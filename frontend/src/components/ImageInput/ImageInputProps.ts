@@ -2,4 +2,5 @@ export interface ImageInputProps extends React.InputHTMLAttributes<HTMLInputElem
     error?: boolean | undefined;
     type?: undefined;
     id: string;
+    defaultImageSrc?: string;
 }

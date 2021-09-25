@@ -6,7 +6,7 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 function Selector(props: SelectorProps) {
     const [isOpened, setIsOpened] = useState(false);
-    const [selectedItem, setSelectedItem] = useState<any>();
+    const [selectedItem, setSelectedItem] = useState<any>(props.defaultValue || undefined);
 
     return (
         <div className={[props.className, props.hidden ? styles.hiddenSeletor : ""].join(" ").trim()}>

@@ -27,3 +27,18 @@ class CurrentUserSeriaizer(serializers.ModelSerializer):
     def get_avatar(self, user):
         request = self.context.get("request")
         return create_file_absolute_url(request=request, file=user.avatar)
+
+
+class UpdateCurrentUserSeriaizer(serializers.ModelSerializer):
+    class Meta:
+        model = UserModel
+        fields = (
+            "avatar",
+            "type",
+            "name",
+            "surname",
+            "company",
+            "inn",
+            "address",
+            "phone",
+        )
