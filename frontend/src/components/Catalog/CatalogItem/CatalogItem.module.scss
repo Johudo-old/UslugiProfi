@@ -1,0 +1,75 @@
+@import "../../../../styles/colors.scss";
+
+.catalogItem {
+    .catalogItem__block {
+        display: block;
+
+        & > *:not(:last-child) {
+            margin-bottom: 8px;
+        }
+    }
+
+    .catalogItem__imageWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        padding-bottom: 100%;
+
+        border: 1px solid $main-color;
+        border-radius: 10px;
+
+        overflow: hidden;
+        position: relative;
+
+        .catalogItem__image {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .catalogItem__title {
+        font-weight: bold;
+        font-size: 1.4em;
+
+        max-height: 1em;
+        overflow: hidden;
+    }
+
+    .catalogItem__description {
+        height: calc(3 * 1.15em);
+        overflow: hidden;
+    }
+
+    .catalogItem__details {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .catalogItem__ratingBlock {
+        display: flex;
+        align-items: center;
+
+        .catalogItem__ratingStar {
+            display: block;
+            color: rgba($color: #000000, $alpha: 0.3);
+
+            &:not(:last-child) {
+                margin-right: 2px;
+            }
+        }
+
+        .catalogItem__ratingItemFilled {
+            color: $gold-color;
+        }
+    }
+
+    .catalogItem__commentsCount {
+        color: rgba($color: #000000, $alpha: 0.3);
+    }
+}

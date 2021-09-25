@@ -4,7 +4,7 @@ import { CatalogProps } from "./CatalogProps";
 
 export default function Catalog(props: CatalogProps) {
     return (
-        <ul className={styles.maincatalog}>
+        <ul className={styles.catalog}>
             {Array.isArray(props.announcements) && props.announcements.length > 0
                 ? props.announcements.map((item, index) => <CatalogItem item={item} key={"catalog__item__" + index} />)
                 : "Список пуст"}
