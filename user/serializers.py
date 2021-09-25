@@ -8,9 +8,22 @@ class CurrentUserSeriaizer(serializers.ModelSerializer):
 
     class Meta:
         model = UserModel
-        fields = ('id', 'email', 'type', 'name', 'surname', 'company', 'ogrn', 'inn',
-                  'address', 'country', 'create_date', 'phone', 'is_email_confirmed', 'avatar')
+        fields = (
+            "id",
+            "email",
+            "type",
+            "name",
+            "surname",
+            "company",
+            "ogrn",
+            "inn",
+            "address",
+            "create_date",
+            "phone",
+            "is_email_confirmed",
+            "avatar",
+        )
 
     def get_avatar(self, user):
-        request = self.context.get('request')
+        request = self.context.get("request")
         return create_file_absolute_url(request=request, file=user.avatar)

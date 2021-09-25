@@ -13,7 +13,7 @@ class CustomUserManager(BaseUserManager):
 
     def create_user(self, email, password, **extra_fields):
         if not email:
-            raise ValueError('The Email must be set')
+            raise ValueError("The Email must be set")
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
@@ -21,53 +21,58 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('is_active', True)
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("is_active", True)
 
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError(('Superuser must have is_staff=True.'))
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError(('Superuser must have is_superuser=True.'))
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError(("Superuser must have is_staff=True."))
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError(("Superuser must have is_superuser=True."))
         return self.create_user(email, password, **extra_fields)
 
 
 class UserModel(AbstractUser):
 
     USER_TYPE = (
-        ('IP', 'ИП'),
-        ('OOO', 'ООО'),
-        ('PF', 'Физ. лицо'),
+        ("IP", "ИП"),
+        ("OOO", "ООО"),
+        ("PF", "Физ. лицо"),
     )
 
     username = None
 
     id = models.AutoField(primary_key=True)
-    email = models.EmailField(verbose_name='Email', max_length=256, unique=True)
-    type = models.CharField(verbose_name='Тип пользователя', max_length=3, choices=USER_TYPE, default='PF')
-    name = models.CharField(verbose_name='Имя', max_length=64, blank=True)
-    surname = models.CharField(verbose_name='Фамилия', max_length=64,  blank=True)
-    company = models.CharField(verbose_name='Название компании', max_length=64, blank=True)
-    ogrn = models.CharField(verbose_name='ОГРН', max_length=64, blank=True)
-    inn = models.CharField(verbose_name='ИНН', max_length=64, blank=True)
-    address = models.CharField(verbose_name='Адрес', max_length=240, blank=True)
-    country = models.CharField(verbose_name='Страна', max_length=32, blank=True)
-    create_date = models.DateField(verbose_name='Дата создания', auto_now_add=True)
-    phone = PhoneNumberField(verbose_name='Телефон', blank=True)
+    email = models.EmailField(verbose_name="Email", max_length=256, unique=True)
+    type = models.CharField(verbose_name="Тип пользователя", max_length=3, choices=USER_TYPE, default="PF")
+    name = models.CharField(verbose_name="Имя", max_length=64, blank=True)
+    surname = models.CharField(verbose_name="Фамилия", max_length=64, blank=True)
+    company = models.CharField(verbose_name="Название компании", max_length=64, blank=True)
+    ogrn = models.CharField(verbose_name="ОГРН", max_length=64, blank=True)
+    inn = models.CharField(verbose_name="ИНН", max_length=64, blank=True)
+    address = models.CharField(verbose_name="Адрес", max_length=240, blank=True)
+    create_date = models.DateField(verbose_name="Дата создания", auto_now_add=True)
+    phone = PhoneNumberField(verbose_name="Телефон", blank=True)
     is_email_confirmed = models.BooleanField(default=False)
-    avatar = ResizedImageField(verbose_name='Аватар', size=[300, 300], quality=100,
-                               crop=['middle', 'center'], upload_to=path_and_rename_avatar, blank=True)
+    avatar = ResizedImageField(
+        verbose_name="Аватар",
+        size=[300, 300],
+        quality=100,
+        crop=["middle", "center"],
+        upload_to=path_and_rename_avatar,
+        blank=True,
+    )
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
 
     class Meta:
-        db_table = 'user'
-        ordering = ['id', 'email',  'name', 'surname', 'type', 'phone', 'company', 'country', 'address']
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
+        db_table = "user"
+        ordering = ["id", "email", "name", "surname", "type", "phone", "company", "address"]
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"
 
     def __str__(self):
         return str(self.email)
