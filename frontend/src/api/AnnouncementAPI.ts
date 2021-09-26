@@ -6,6 +6,7 @@ import { APIUtils } from "../utils/APIUtils";
 export const AnnouncementAPI = {
     getAnnouncements,
     createAnnouncements,
+    getAnnouncementById,
 };
 
 function getAnnouncements(config: { user?: number } = {}) {
@@ -18,7 +19,7 @@ function getAnnouncements(config: { user?: number } = {}) {
             },
             headers: defaultHeaders,
         })
-        .then((res: AxiosResponse<AnnouncementAPIData>) => res)
+        .then((res: AxiosResponse<getAnnouncementsAPIData>) => res)
         .catch((err: AxiosError) => err.response as AxiosResponse);
 }
 
@@ -32,8 +33,20 @@ function createAnnouncements(data: FormData) {
                 ...defaultHeaders,
             },
         })
-        .then((res: AxiosResponse<AnnouncementAPIData>) => res)
+        .then((res: AxiosResponse<{}>) => res)
         .catch((err: AxiosError) => err.response as AxiosResponse);
 }
 
-export interface AnnouncementAPIData extends Array<Announcement> {}
+function getAnnouncementById(id: number) {
+    const defaultHeaders: any = APIUtils.setDefaultHeader();
+
+    return axios
+        .get(`${BACKEND_API_URL}/api/announcement/${id}/`, {
+            headers: defaultHeaders,
+        })
+        .then((res: AxiosResponse<getAnnouncementByIdAPIData>) => res)
+        .catch((err: AxiosError) => err.response as AxiosResponse);
+}
+
+export interface getAnnouncementsAPIData extends Array<Announcement> {}
+export interface getAnnouncementByIdAPIData extends Announcement {}

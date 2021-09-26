@@ -8,7 +8,7 @@ const rating = 3;
 export default function CatalogItem(props: CatalogItemProps) {
     return (
         <li className={styles.catalogItem}>
-            <a href={"/announcment/" + props.item.id} className={styles.catalogItem__block}>
+            <a href={"/announcement/" + props.item.id} className={styles.catalogItem__block}>
                 <div className={styles.catalogItem__imageWrapper}>
                     <img src={props.item.image} alt={props.item.name} className={styles.catalogItem__image} />
                 </div>
