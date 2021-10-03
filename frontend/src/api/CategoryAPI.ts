@@ -11,7 +11,7 @@ function getCategories(config: { with_subcategories?: boolean } = {}) {
     const defaultHeaders: any = APIUtils.setDefaultHeader();
 
     return axios
-        .get(BACKEND_API_URL + "/api/category/", {
+        .get(BACKEND_API_URL + "/django-api/category/", {
             params: config,
             headers: defaultHeaders,
         })

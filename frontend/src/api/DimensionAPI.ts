@@ -11,7 +11,7 @@ function getDimensions() {
     const defaultHeaders: any = APIUtils.setDefaultHeader();
 
     return axios
-        .get(BACKEND_API_URL + "/api/dimension/", { headers: defaultHeaders })
+        .get(BACKEND_API_URL + "/django-api/dimension/", { headers: defaultHeaders })
         .then((res: AxiosResponse<DimensionAPIData>) => res)
         .catch((err: AxiosError) => err.response as AxiosResponse);
 }

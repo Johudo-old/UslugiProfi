@@ -22,14 +22,14 @@ from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, Bl
 
 
 urlpatterns = [
-    path('api/user/', include('user.urls')),
-    path('api/category/', include('category.urls')),
-    path('api/subcategory/', include('subcategory.urls')),
-    path('api/announcement/', include('announcement.urls')),
-    path('api/dimension/', include('dimension.urls')),
-    path('api/price_currency/', include('price_currency.urls')),
-    path('auth/', include('authentication.urls')),
-    path('admin/', admin.site.urls),
+    path("django-api/user/", include("user.urls")),
+    path("django-api/category/", include("category.urls")),
+    path("django-api/subcategory/", include("subcategory.urls")),
+    path("django-api/announcement/", include("announcement.urls")),
+    path("django-api/dimension/", include("dimension.urls")),
+    path("django-api/price_currency/", include("price_currency.urls")),
+    path("auth/", include("authentication.urls")),
+    path("admin/", admin.site.urls),
 ]
 
 

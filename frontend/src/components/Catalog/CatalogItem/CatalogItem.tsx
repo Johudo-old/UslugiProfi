@@ -23,6 +23,7 @@ export default function CatalogItem(props: CatalogItemProps) {
                             .map((item, index) => (
                                 <FontAwesomeIcon
                                     icon={faStar}
+                                    key={`catalogItem__rating__${props.item.id}__${index}`}
                                     className={[
                                         styles.catalogItem__ratingStar,
                                         index + 1 <= rating ? styles.catalogItem__ratingItemFilled : "",

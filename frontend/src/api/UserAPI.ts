@@ -12,7 +12,7 @@ function getCurrenUserInfo() {
     const defaultHeaders: any = APIUtils.setDefaultHeader();
 
     return axios
-        .get(BACKEND_API_URL + "/api/user/me", { headers: defaultHeaders })
+        .get(BACKEND_API_URL + "/django-api/user/me", { headers: defaultHeaders })
         .then((res: AxiosResponse<UserInfoAPIData>) => res)
         .catch((err: AxiosError) => err.response as AxiosResponse);
 }
@@ -21,7 +21,7 @@ function updateCurrenUserInfo(data: FormData) {
     const defaultHeaders: any = APIUtils.setDefaultHeader();
 
     return axios
-        .patch(BACKEND_API_URL + "/api/user/me/", data, { headers: defaultHeaders })
+        .patch(BACKEND_API_URL + "/django-api/user/me/", data, { headers: defaultHeaders })
         .then((res: AxiosResponse<UserInfoAPIData>) => res)
         .catch((err: AxiosError) => err.response as AxiosResponse);
 }
