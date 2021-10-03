@@ -11,7 +11,7 @@ function getPriceCurrencies() {
     const defaultHeaders: any = APIUtils.setDefaultHeader();
 
     return axios
-        .get(BACKEND_API_URL + "/api/price_currency/", { headers: defaultHeaders })
+        .get(BACKEND_API_URL + "/django-api/price_currency/", { headers: defaultHeaders })
         .then((res: AxiosResponse<PriceCurrencyAPIData>) => res)
         .catch((err: AxiosError) => err.response as AxiosResponse);
 }

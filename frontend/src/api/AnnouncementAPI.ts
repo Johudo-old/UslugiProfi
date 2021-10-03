@@ -13,7 +13,7 @@ function getAnnouncements(config: { user?: number } = {}) {
     const defaultHeaders: any = APIUtils.setDefaultHeader();
 
     return axios
-        .get(BACKEND_API_URL + "/api/announcement/", {
+        .get(BACKEND_API_URL + "/django-api/announcement/", {
             params: {
                 user: config.user,
             },
@@ -27,7 +27,7 @@ function createAnnouncements(data: FormData) {
     const defaultHeaders: any = APIUtils.setDefaultHeader();
 
     return axios
-        .post(BACKEND_API_URL + "/api/announcement/", data, {
+        .post(BACKEND_API_URL + "/django-api/announcement/", data, {
             headers: {
                 "Content-Type": "multipart/form-data",
                 ...defaultHeaders,
@@ -41,7 +41,7 @@ function getAnnouncementById(id: number) {
     const defaultHeaders: any = APIUtils.setDefaultHeader();
 
     return axios
-        .get(`${BACKEND_API_URL}/api/announcement/${id}/`, {
+        .get(`${BACKEND_API_URL}/django-api/announcement/${id}/`, {
             headers: defaultHeaders,
         })
         .then((res: AxiosResponse<getAnnouncementByIdAPIData>) => res)

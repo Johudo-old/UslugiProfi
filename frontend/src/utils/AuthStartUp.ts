@@ -34,7 +34,7 @@ export const AuthStartUp = async (store: Store<IState, AnyAction>, { pathname, r
         ]);
 
         const apiResUserInfo = await axios
-            .get(BACKEND_API_URL + "/api/user/me/", {
+            .get(BACKEND_API_URL + "/django-api/user/me/", {
                 headers: { Authorization: `${JWT_AUTH_HEADER_PREFIX} ${apiResRefresh.data.access}` },
             })
             .then((res: AxiosResponse<UserInfoAPIData>) => res)
